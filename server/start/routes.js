@@ -12,11 +12,11 @@
 | http://adonisjs.com/docs/4.0/routing
 |
 */
-
 const Route = use('Route')
 
 Route.group(() => {
-  Route.post('/auth/register', 'UserController.register')
+  Route.post('/register', 'UserController.register')
+  Route.post('/login', 'UserController.login')
 }) 
-.prefix('api')
+.prefix('api/auth');
 
