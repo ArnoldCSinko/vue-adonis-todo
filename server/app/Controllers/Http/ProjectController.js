@@ -18,6 +18,17 @@ class ProjectController {
         await user.projects().save(project);
         return project;
     }
+
+    async destroy({ auth, request, params}) {
+        const user = await auth.getUser();
+        const { id } = params;
+        const project = await Project.find(id);
+        if(project.user_id !== user.id) {
+            return Response.status(403);
+        }
+        await project.delete();
+        return project;
+    }
 }
 
 module.exports = ProjectController
